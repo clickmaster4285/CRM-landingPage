@@ -16,10 +16,10 @@ export function ProblemSolution() {
   const [hoveredFeature, setHoveredFeature] = useState(null);
 
   const before = [
-    { text: "Sticky notes everywhere", icon: "📝", image: "/f5.webp" },
-    { text: "Leads slipping through cracks", icon: "💔", image: "/f5.webp" },
-    { text: "10 tabs, zero clarity", icon: "🔄", image: "/f5.webp" },
-    { text: "Forgotten follow-ups", icon: "⏰", image: "/f5.webp" }
+    { text: "Sticky notes everywhere", icon: "📝", image: "/crm-fail.webp" },
+    { text: "Leads slipping through cracks", icon: "💔", image: "/crm-fail.webp" },
+    { text: "10 tabs, zero clarity", icon: "🔄", image: "/crm-fail.webp" },
+    { text: "Forgotten follow-ups", icon: "⏰", image: "/crm-fail.webp" }
   ];
   
   const after = [
@@ -234,7 +234,7 @@ export function ProblemSolution() {
           >
             {/* Background Image Overlay */}
             <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-              <img src="/f5.webp" alt="F5" className="w-full h-full object-cover" />
+              <img src="/crm-fail.webp" alt="F5" className="w-full h-full object-cover" />
             </div>
             
             {/* Gradient Border Effect */}

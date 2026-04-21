@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Button } from '@/components/ui/button';
 
-const images = ['/f4.webp', '/f5.webp', '/f3.webp'];
+const images = ['/f4.webp', '/f7.webp', '/f9.webp'];
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
