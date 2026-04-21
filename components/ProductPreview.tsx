@@ -1,10 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Calendar, Mail, Phone, MessageSquare, MoreHorizontal, Sparkles, Zap, Eye, TrendingUp } from "lucide-react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function ProductPreview() {
+  const containerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const stagesRef = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const stages = [
     { name: "New", count: 12, color: "oklch(0.75 0.15 220)", gradient: "from-blue-500/20 to-cyan-500/20" },
@@ -16,8 +26,107 @@ export function ProductPreview() {
   const companies = ["Acme Studio", "Northwind", "Lumen", "Pixel Co", "Vertex", "Atlas Inc"];
   const amounts = ["12.5k", "8.2k", "15.3k", "6.8k", "22.1k", "9.4k"];
 
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+
+      const ctx = gsap.context(() => {
+        // Header animation
+        if (headerRef.current) {
+          const headerElements = headerRef.current.querySelectorAll('.animate-on-scroll');
+          if (headerElements.length) {
+            gsap.fromTo(headerElements, 
+              { y: 40, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: headerRef.current,
+                  start: 'top 80%',
+                  once: true,
+                }
+              }
+            );
+          }
+        }
+
+        // Preview window animation
+        if (previewRef.current) {
+          gsap.fromTo(previewRef.current,
+            { y: 60, opacity: 0, scale: 0.95 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.7,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: previewRef.current,
+                start: 'top 85%',
+                once: true,
+              }
+            }
+          );
+        }
+
+        // Sidebar animation
+        if (sidebarRef.current) {
+          gsap.fromTo(sidebarRef.current,
+            { x: 50, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.6,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: sidebarRef.current,
+                start: 'top 85%',
+                once: true,
+              }
+            }
+          );
+        }
+
+        // Stage columns animation
+        stagesRef.current.forEach((stage, i) => {
+          if (stage) {
+            gsap.fromTo(stage,
+              { x: -30, opacity: 0 },
+              {
+                x: 0,
+                opacity: 1,
+                duration: 0.5,
+                delay: i * 0.1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: stage,
+                  start: 'top 90%',
+                  once: true,
+                }
+              }
+            );
+          }
+        });
+
+      }, containerRef);
+
+      setTimeout(() => setIsAnimating(false), 1000);
+      return () => ctx.revert();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="py-24 lg:py-32 px-6 bg-gradient-to-b from-background via-background to-primary/5 relative overflow-hidden">
+    <section 
+      ref={containerRef} 
+      className="py-24 lg:py-32 px-6 bg-gradient-to-b from-background via-background to-primary/5 relative overflow-hidden"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-40 left-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse" />
@@ -28,26 +137,26 @@ export function ProductPreview() {
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-primary text-sm font-medium mb-6 backdrop-blur-sm">
+        <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16">
+          <div className="animate-on-scroll inline-flex items-center gap-2 px-4 py-2 rounded-full text-primary text-sm font-medium mb-6 backdrop-blur-sm">
             <Sparkles className="w-4 h-4" />
             <span>Live Preview</span>
           </div>
 
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight">
+          <h2 className="animate-on-scroll text-4xl lg:text-5xl font-bold tracking-tight">
             A workspace that{' '}
             <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               breathes.
             </span>
           </h2>
           
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="animate-on-scroll mt-4 text-lg text-muted-foreground">
             Beautiful by default. Powerful when you need it.
           </p>
         </div>
 
         {/* Product Preview Window */}
-        <div className="max-w-6xl mx-auto">
+        <div ref={previewRef} className="max-w-6xl mx-auto">
           <div className="rounded-2xl bg-gradient-to-br from-card to-card/50 border border-border shadow-2xl overflow-hidden backdrop-blur-sm">
             
             {/* Window Header */}
@@ -71,7 +180,8 @@ export function ProductPreview() {
                 {stages.map((stage, stageIdx) => (
                   <div
                     key={stage.name}
-                    className={`rounded-xl bg-gradient-to-br ${stage.gradient} p-3 min-h-[300px] backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300`}
+                    ref={(el) => (stagesRef.current[stageIdx] = el)}
+                    className={`rounded-xl bg-gradient-to-br ${stage.gradient} p-3 min-h-[300px] backdrop-blur-sm border border-primary/10 hover:border-primary/30 transition-all duration-300 opacity-0`}
                   >
                     {/* Stage Header */}
                     <div className="flex items-center justify-between mb-3">
@@ -126,8 +236,8 @@ export function ProductPreview() {
                 ))}
               </div>
 
-              {/* Sidebar - No GSAP */}
-              <div className="space-y-4">
+              {/* Sidebar */}
+              <div ref={sidebarRef} className="space-y-4 opacity-0">
                 
                 {/* Contact Card - Sara Kim */}
                 <div className="rounded-xl bg-card border border-border p-4 hover:shadow-xl transition-all duration-300 group">

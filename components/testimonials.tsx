@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: 'Pinnacle has transformed how we manage our operations. The time savings alone have been incredible.',
+    quote: 'ClickMasters has transformed how we manage our operations. The time savings alone have been incredible.',
     author: 'Sarah Johnson',
     role: 'CEO at TechStart',
     initials: 'SJ',
@@ -174,7 +174,7 @@ export function Testimonials() {
             </span>
           </h2>
           <p className="animate-header text-lg text-muted-foreground max-w-2xl mx-auto">
-            See what our customers have to say about their experience with Pinnacle.
+            See what our customers have to say about their experience with ClickMasters.
           </p>
         </div>
 

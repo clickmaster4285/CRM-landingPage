@@ -244,7 +244,7 @@ export function ProblemSolution() {
               <div className="flex items-center justify-between mb-6">
                 <div className="text-xs uppercase tracking-wider text-destructive font-semibold flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-destructive animate-pulse" />
-                  Before Pinnacle
+                  Before ClickMasters
                 </div>
                 <div className="text-2xl opacity-50 group-hover:opacity-100 transition-opacity">😫</div>
               </div>
@@ -313,7 +313,7 @@ export function ProblemSolution() {
               <div className="flex items-center justify-between mb-6">
                 <div className="text-xs uppercase tracking-wider text-primary font-semibold flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  With Pinnacle
+                  With ClickMasters
                 </div>
                 <div className="text-2xl opacity-50 group-hover:opacity-100 transition-opacity animate-bounce">
                   🚀

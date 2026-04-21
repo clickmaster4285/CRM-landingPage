@@ -47,7 +47,7 @@ export function Navbar() {
               textShadow: !isScrolled ? '0 0 12px rgba(255,255,255,0.18)' : 'none',
             }}
           >
-            Pinnacle
+            ClickMasters
           </span>
         </div>
 

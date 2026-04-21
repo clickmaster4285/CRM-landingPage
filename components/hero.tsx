@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Button } from '@/components/ui/button';
 
-const images = ['/f4.jpg', '/f2.webp', '/f3.jpg'];
+const images = ['/f4.webp', '/f2.webp', '/f3.webp'];
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -114,7 +114,7 @@ export function Hero() {
       '0 0 10px rgba(255,255,255,0.25)';
   }}
 >
-  Pinnacle
+  ClickMasters
 </span>
             </h1>
 

@@ -8,16 +8,16 @@ import { Check, Minus, Sparkles, TrendingUp, Award, Zap } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 type Cell = boolean | "partial";
-const rows: { feature: string; spreadsheet: Cell; complex: Cell; Pinnacle: Cell }[] = [
-  { feature: "Set up in under 5 minutes", spreadsheet: false, complex: false, Pinnacle: true },
-  { feature: "Beautiful, simple interface", spreadsheet: false, complex: "partial", Pinnacle: true },
-  { feature: "Built-in automations", spreadsheet: false, complex: true, Pinnacle: true },
-  { feature: "No training required", spreadsheet: "partial", complex: false, Pinnacle: true },
-  { feature: "Affordable for small teams", spreadsheet: true, complex: false, Pinnacle: true },
+const rows: { feature: string; spreadsheet: Cell; complex: Cell; ClickMasters: Cell }[] = [
+  { feature: "Set up in under 5 minutes", spreadsheet: false, complex: false, ClickMasters: true },
+  { feature: "Beautiful, simple interface", spreadsheet: false, complex: "partial", ClickMasters: true },
+  { feature: "Built-in automations", spreadsheet: false, complex: true, ClickMasters: true },
+  { feature: "No training required", spreadsheet: "partial", complex: false, ClickMasters: true },
+  { feature: "Affordable for small teams", spreadsheet: true, complex: false, ClickMasters: true },
 ];
 
-function Cell({ v, isPinnacle = false }: { v: boolean | "partial"; isPinnacle?: boolean }) {
-  if (v === true) return <Check className={`w-5 h-5 ${isPinnacle ? 'text-primary' : 'text-primary'} mx-auto transition-all duration-300 group-hover:scale-110`} />;
+function Cell({ v, isClickMasters = false }: { v: boolean | "partial"; isClickMasters?: boolean }) {
+  if (v === true) return <Check className={`w-5 h-5 ${isClickMasters ? 'text-primary' : 'text-primary'} mx-auto transition-all duration-300 group-hover:scale-110`} />;
   if (v === "partial") return <Minus className="w-5 h-5 text-muted-foreground mx-auto transition-all duration-300" />;
   return <Minus className="w-5 h-5 text-muted-foreground/40 mx-auto transition-all duration-300" />;
 }
@@ -130,10 +130,10 @@ export function WhySwitch() {
         }
       });
 
-      // Pinnacle column highlight animation
-      const pinnacleCells = tableRef.current?.querySelectorAll('.pinnacle-cell');
-      if (pinnacleCells) {
-        gsap.from(pinnacleCells, {
+      // ClickMasters column highlight animation
+      const ClickMastersCells = tableRef.current?.querySelectorAll('.ClickMasters-cell');
+      if (ClickMastersCells) {
+        gsap.from(ClickMastersCells, {
           scrollTrigger: {
             trigger: tableRef.current,
             start: 'top 85%',
@@ -146,8 +146,8 @@ export function WhySwitch() {
           ease: 'back.out(0.6)',
         });
         
-        // Continuous subtle pulse on Pinnacle column
-        gsap.to(pinnacleCells, {
+        // Continuous subtle pulse on ClickMasters column
+        gsap.to(ClickMastersCells, {
           scale: 1.05,
           duration: 1.5,
           repeat: -1,
@@ -165,7 +165,7 @@ export function WhySwitch() {
   return (
     <section 
       ref={containerRef} 
-      className="py-24 lg:py-32 px-6 bg-gradient-to-b from-primary/5 via-background to-primary/5 relative overflow-hidden"
+      className="py-24 lg:py-32 px-6 bg-gradient-to-b from-background via-background to-primary/5 relative overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -231,7 +231,7 @@ export function WhySwitch() {
               <div className="font-bold text-foreground">Feature</div>
               <div className="text-center">Spreadsheets</div>
               <div className="text-center">Heavy CRMs</div>
-              <div className="text-center text-primary">Pinnacle</div>
+              <div className="text-center text-primary">ClickMasters</div>
             </div>
 
             {/* Table Rows */}
@@ -251,18 +251,18 @@ export function WhySwitch() {
                 
                 {/* Spreadsheet Column */}
                 <div className="cell-animate flex justify-center">
-                  <Cell v={r.spreadsheet} isPinnacle={false} />
+                  <Cell v={r.spreadsheet} isClickMasters={false} />
                 </div>
                 
                 {/* Complex CRM Column */}
                 <div className="cell-animate flex justify-center">
-                  <Cell v={r.complex} isPinnacle={false} />
+                  <Cell v={r.complex} isClickMasters={false} />
                 </div>
                 
-                {/* Pinnacle Column - Highlighted */}
-                <div className="cell-animate pinnacle-cell flex justify-center relative">
+                {/* ClickMasters Column - Highlighted */}
+                <div className="cell-animate ClickMasters-cell flex justify-center relative">
                   <div className="absolute inset-0 bg-primary/5 rounded-full blur-sm" />
-                  <Cell v={r.Pinnacle} isPinnacle={true} />
+                  <Cell v={r.ClickMasters} isClickMasters={true} />
                 </div>
               </div>
             ))}
@@ -285,8 +285,8 @@ export function WhySwitch() {
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-primary" />
-                  <span>Pinnacle wins in every category</span>
+                  
+                  <span>ClickMasters wins in every category</span>
                 </div>
               </div>
             </div>
@@ -298,7 +298,7 @@ export function WhySwitch() {
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
             <span>✨</span>
             Join thousands who already made the 
-Pinnacle
+ClickMasters
             <span>✨</span>
           </p>
         </div>

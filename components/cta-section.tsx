@@ -57,7 +57,7 @@ export function CTASection() {
             </h2>
 
             <p className="mt-6 text-lg text-primary-foreground/80 max-w-xl mx-auto">
-              Try Pinnacle free. Move your work over in an afternoon. Wonder why you waited.
+              Try ClickMasters free. Move your work over in an afternoon. Wonder why you waited.
             </p>
 
             <Button

@@ -8,7 +8,7 @@ export function Footer() {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold">P</span>
               </div>
-              <span className="font-bold text-foreground">Pinnacle</span>
+              <span className="font-bold text-foreground">ClickMasters</span>
             </div>
             <p className="text-sm text-foreground/60">
               The most powerful platform for modern businesses.
@@ -48,7 +48,7 @@ export function Footer() {
 
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between">
           <p className="text-sm text-foreground/60">
-            © 2026 Pinnacle. All rights reserved.
+            © 2026 ClickMasters. All rights reserved.
           </p>
           <div className="flex gap-6 mt-4 sm:mt-0">
             <a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Twitter</a>

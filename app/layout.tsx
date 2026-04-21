@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Pinnacle - Premium SaaS Solution',
+  title: 'ClickMasters - Premium SaaS Solution',
   description: 'The most powerful platform for modern businesses. Streamline your workflow, boost productivity, and scale faster than ever before.',
   generator: 'v0.app',
   icons: {

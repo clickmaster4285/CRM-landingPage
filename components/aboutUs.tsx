@@ -236,7 +236,7 @@ export function About() {
             {/* Image Container */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 group-hover:scale-[1.02]">
               <img 
-                src="/f1.jpg" 
+                src="/f1.webp" 
                 alt="ClickMasters Software Development Team" 
                 className="w-full h-auto object-cover"
               />

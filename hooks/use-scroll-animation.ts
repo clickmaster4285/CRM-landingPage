@@ -8,12 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function useScrollAnimation() {
   useEffect(() => {
-    // Kill all ScrollTriggers on mount to prevent conflicts
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  // Safe refresh only - no global kill
 
     // Refresh ScrollTrigger calculations
     return () => {
-      ScrollTrigger.refresh();
+      ScrollTrigger.refresh(true);
     };
   }, []);
+
 }
