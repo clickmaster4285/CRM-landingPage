@@ -32,7 +32,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105">
             <span className="text-primary-foreground font-bold text-lg">
-              P
+              CM
             </span>
           </div>
           <span
@@ -53,10 +53,10 @@ export function Navbar() {
 
         {/* LINKS */}
         <div className="hidden md:flex items-center gap-8">
-          {['How it works', 'Features', 'Pricing', 'Contact'].map((item) => (
+{['Features', 'About Us', 'Pricing', 'How it works', 'Contact'].map((item) => (
             <a
               key={item}
-              href="/#contact"
+              href={`#${item.toLowerCase().replace(/ /g, '-').replace(/choose us/, 'switch')}`}
               className={`
                 transition-all duration-300 text-sm font-medium
                 ${isScrolled

@@ -164,6 +164,7 @@ export function WhySwitch() {
 
   return (
     <section 
+      id="why-switch"
       ref={containerRef} 
       className="py-24 lg:py-32 px-6 bg-gradient-to-b from-background via-background to-primary/5 relative overflow-hidden"
     >

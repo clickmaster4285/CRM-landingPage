@@ -6,7 +6,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">P</span>
+                <span className="text-primary-foreground font-bold">CM</span>
               </div>
               <span className="font-bold text-foreground">ClickMasters</span>
             </div>
@@ -18,17 +18,17 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Product</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Features</a></li>
-              <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Pricing</a></li>
-              <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Security</a></li>
-              <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Roadmap</a></li>
+              <li><a href="/#features" className="text-foreground/60 hover:text-foreground transition-colors">Features</a></li>
+              <li><a href="/#pricing" className="text-foreground/60 hover:text-foreground transition-colors">Pricing</a></li>
+              <li><a href="/#features" className="text-foreground/60 hover:text-foreground transition-colors">Security</a></li>
+              <li><a href="/#how-it-works" className="text-foreground/60 hover:text-foreground transition-colors">Roadmap</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">About</a></li>
+              <li><a href="/#about-us" className="text-foreground/60 hover:text-foreground transition-colors">About</a></li>
               <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Blog</a></li>
               <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Careers</a></li>
               <li><a href="/#contact" className="text-foreground/60 hover:text-foreground transition-colors">Contact</a></li>

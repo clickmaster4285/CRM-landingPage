@@ -277,9 +277,7 @@ export function UseCases() {
         <div className="text-center mt-16">
           <div className="inline-flex flex-col items-center gap-3">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>✨</span>
-              <span>Trusted by thousands of businesses worldwide</span>
-              <span>✨</span>
+             
             </div>
             <div className="flex gap-2">
               {[0, 1, 2].map((i) => (

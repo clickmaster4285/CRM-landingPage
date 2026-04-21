@@ -76,6 +76,7 @@ export function HowItWorks() {
 
   return (
     <section
+      id="how-it-works"
       ref={containerRef}
       className="py-24 px-6 bg-secondary-foreground text-white relative overflow-hidden"
     >

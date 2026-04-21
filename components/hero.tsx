@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Button } from '@/components/ui/button';
 
-const images = ['/f4.webp', '/f2.webp', '/f3.webp'];
+const images = ['/f4.webp', '/f5.webp', '/f3.webp'];
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,14 +13,21 @@ export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
 
   const [index, setIndex] = useState(0);
+  
+  // Counter states
+  const [activeUsers, setActiveUsers] = useState(0);
+  const [uptime, setUptime] = useState(0);
+  const [support, setSupport] = useState(0);
+  const [countersStarted, setCountersStarted] = useState(false);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // TEXT ANIMATION (same as yours but cleaner)
+  // TEXT ANIMATION
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(titleRef.current, {
@@ -45,10 +52,55 @@ export function Hero() {
         delay: 0.2,
         ease: 'power3.out',
       });
+
+      gsap.from(statsRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'power3.out',
+      });
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
+
+  // Counter animation - runs only once when page loads
+  useEffect(() => {
+    if (countersStarted) return;
+    
+    const animateCounter = (
+      start: number, 
+      end: number, 
+      duration: number, 
+      setter: React.Dispatch<React.SetStateAction<number>>
+    ) => {
+      const range = end - start;
+      const stepTime = Math.abs(Math.floor(duration / range));
+      let current = start;
+      const timer = setInterval(() => {
+        if (current < end) {
+          current++;
+          setter(current);
+        } else {
+          clearInterval(timer);
+        }
+      }, stepTime);
+    };
+
+    // Small delay to ensure component is mounted
+    const timer = setTimeout(() => {
+      setCountersStarted(true);
+      // Active users: count from 0 to 10 (displayed as 10K)
+      animateCounter(0, 10, 2000, setActiveUsers);
+      // Uptime: count from 0 to 999 (displayed as 99.9%)
+      animateCounter(0, 999, 2000, setUptime);
+      // Support: count from 0 to 24 (displayed as 24/7)
+      animateCounter(0, 24, 2000, setSupport);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [countersStarted]);
 
   // BACKGROUND CAROUSEL
   useEffect(() => {
@@ -100,22 +152,22 @@ export function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
               Transform Your Business with{' '}
-            <span
-  className="text-white transition"
-  style={{
-    textShadow: '0 0 10px rgba(255,255,255,0.25)',
-  }}
-  onMouseEnter={(e) => {
-    (e.currentTarget as HTMLSpanElement).style.textShadow =
-      '0 0 18px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.25)';
-  }}
-  onMouseLeave={(e) => {
-    (e.currentTarget as HTMLSpanElement).style.textShadow =
-      '0 0 10px rgba(255,255,255,0.25)';
-  }}
->
-  ClickMasters
-</span>
+              <span
+                className="text-white transition"
+                style={{
+                  textShadow: '0 0 10px rgba(255,255,255,0.25)',
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLSpanElement).style.textShadow =
+                    '0 0 18px rgba(255,255,255,0.5), 0 0 40px rgba(255,255,255,0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLSpanElement).style.textShadow =
+                    '0 0 10px rgba(255,255,255,0.25)';
+                }}
+              >
+                ClickMasters
+              </span>
             </h1>
 
             <p
@@ -135,24 +187,32 @@ export function Hero() {
                 Start Free Trial
               </Button>
 
-              <Button size="lg" variant="ghost" className="px-8 text-white border-white/30" onClick={scrollToContact}>
+              <Button size="lg" variant="ghost" className="px-8 text-white border-white/30 hover:bg-white/10" onClick={scrollToContact}>
                 Watch Demo
               </Button>
             </div>
 
-            {/* STATS */}
-            <div className="flex gap-6 pt-4 text-white">
-              <div>
-                <p className="font-semibold">10K+</p>
-                <p className="text-sm text-white/60">Active Users</p>
+            {/* STATS with white text and counters */}
+            <div ref={statsRef} className="flex gap-8 pt-4 text-white">
+              <div className="text-center">
+                <p className="text-3xl sm:text-4xl font-bold text-white">
+                  {activeUsers}K+
+                </p>
+                <p className="text-sm sm:text-base text-white/70 mt-1 font-medium">Active Users</p>
               </div>
-              <div>
-                <p className="font-semibold">99.9%</p>
-                <p className="text-sm text-white/60">Uptime</p>
+              <div className="w-px h-12 bg-white/20 self-center" />
+              <div className="text-center">
+                <p className="text-3xl sm:text-4xl font-bold text-white">
+                  {(uptime / 10).toFixed(1)}%
+                </p>
+                <p className="text-sm sm:text-base text-white/70 mt-1 font-medium">Uptime</p>
               </div>
-              <div>
-                <p className="font-semibold">24/7</p>
-                <p className="text-sm text-white/60">Support</p>
+              <div className="w-px h-12 bg-white/20 self-center" />
+              <div className="text-center">
+                <p className="text-3xl sm:text-4xl font-bold text-white">
+                  {support}/7
+                </p>
+                <p className="text-sm sm:text-base text-white/70 mt-1 font-medium">Support</p>
               </div>
             </div>
 

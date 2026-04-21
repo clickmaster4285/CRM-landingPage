@@ -168,7 +168,7 @@ export function ProductPreview() {
               </div>
               <div className="text-xs text-muted-foreground ml-3 flex items-center gap-2">
                 <Zap className="w-3 h-3" />
-                <span>Pinnacle.app/pipeline</span>
+                <span>ClickMasters.app/pipeline</span>
               </div>
             </div>
 
